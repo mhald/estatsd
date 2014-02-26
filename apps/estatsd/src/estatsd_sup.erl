@@ -30,6 +30,7 @@ start_link() -> supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 %% @doc Builds the supervisor and child-spec.
 init([]) ->
+  application:start(lager),
   ChildSpec = [
     % Server handling metrics.
     worker_spec_(estatsd_server),
